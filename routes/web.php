@@ -24,3 +24,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::get('/crear-multa','MultasController@index')->name('multa.index');
 Route::get('/multas','MultasController@all')->name('multa.all');
 Route::post('/store-multa','MultasController@store')->name('multa.store');
+Route::delete('multa/{id}', 'MultasController@destroy')->name('multa.destroy');
+
+Route::get('/consultar-multa','ConsultarController@index')->name('consulta.index');
+Route::post('/consulta-multa','ConsultarController@show')->name('consulta.show');

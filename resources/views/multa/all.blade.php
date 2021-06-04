@@ -7,9 +7,14 @@
                 <div class="card">
                     <div class="card-header">{{ __('Multas Registradas') }}</div>
                     <div class="card-body">
+                        @if(session()->has('message'))
+                            <div class="alert alert-success">
+                                {{ session()->get('message') }}
+                            </div>
+                        @endif
                         <div class="table-responsive">
                         <table class="table table-striped">
-                            <thead class="thead-dark">
+                            <thead class="thead-dark text-center">
                             <tr>
                                 <th scope="col">#Boleta</th>
                                 <th scope="col">Tipo Vehiculo</th>
@@ -27,6 +32,7 @@
                                 <th scope="col">Fecha Multa</th>
                                 <th scope="col">Elemento</th>
                                 <th scope="col">Fecha Vencimiento</th>
+                                <th scope="col">Opciones</th>
                             </tr>
                             </thead>
                             <tbody>
@@ -48,6 +54,13 @@
                                 <th scope="row">{{$item->fecha_mul}}</th>
                                 <th scope="row">{{$item->chapa}}</th>
                                 <th scope="row">{{$item->fechavenc}}</th>
+                                <th>
+                                <form method="POST" action="{{ route('multa.destroy', $item->boleta_no)}}">
+                                    @csrf
+                                    @method('DELETE')
+                                    <button type="submit" class="btn btn-sm btn-outline-danger">Eliminar</button>
+                                </form>
+                                </th>
                             </tr>
                             @endforeach
                             </tbody>

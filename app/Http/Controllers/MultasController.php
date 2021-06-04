@@ -75,4 +75,12 @@ class MultasController extends Controller
 
         return redirect()->route('multa.index')->with('message', 'La multa fue ingresada correctamente!');
     }
+
+    public function destroy($id)
+    {
+        $multa = Multas::find($id);
+
+        $multa->delete();
+        return redirect()->route('multa.all')->with('message', 'La Multa fue eliminada');
+    }
 }
