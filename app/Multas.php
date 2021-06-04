@@ -10,6 +10,8 @@ class Multas extends Model
     public $incrementing = false;
     public $timestamps = false;
 
+    protected $primaryKey = 'boleta_no';
+
     protected $fillable = [
         'boleta_no',
         'tipovehic_id_tipo',
