@@ -6,6 +6,10 @@ use Illuminate\Database\Eloquent\Model;
 
 class Multas extends Model
 {
+    protected $table = "multas";
+    public $incrementing = false;
+    public $timestamps = false;
+
     protected $fillable = [
         'boleta_no',
         'tipovehic_id_tipo',

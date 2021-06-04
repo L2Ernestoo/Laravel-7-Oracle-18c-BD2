@@ -22,3 +22,4 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/crear-multa','MultasController@index')->name('multa.index');
+Route::post('/store-multa','MultasController@store')->name('multa.store');

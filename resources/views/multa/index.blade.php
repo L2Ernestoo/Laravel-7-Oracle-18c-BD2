@@ -7,13 +7,14 @@
                 <div class="card">
                     <div class="card-header">{{ __('Ingresar Multa') }}</div>
                     <div class="card-body">
-                        <form id="form_multa" method="post">
+                        <form id="form_multa" method="post" action="{{route('multa.store')}}">
                             @csrf
                             <div class="form-row">
                                 <div class="form-group col-md-4">
                                     <label for="exampleFormControlSelect1">Tipo de vehiculo</label>
                                     <select name="tipo_vehiculo" class="form-control" id="exampleFormControlSelect1">
-                                        @foreach($tipos_vehiculos as $item)
+                                        <option value="" hidden>Seleccionar</option>
+                                    @foreach($tipos_vehiculos as $item)
                                             <option value="{{$item->id_tipo}}">{{$item->tipo}}</option>
                                             @endforeach
                                     </select>
@@ -21,6 +22,7 @@
                                 <div class="form-group col-md-4">
                                     <label for="exampleFormControlSelect1">Marca</label>
                                     <select name="marca" class="form-control" id="exampleFormControlSelect1">
+                                        <option value="" hidden>Seleccionar</option>
                                         @foreach($marcas as $item)
                                             <option value="{{$item->idmarca}}">{{$item->marca}}</option>
                                         @endforeach
@@ -29,10 +31,15 @@
                                 <div class="form-group col-md-4">
                                     <label for="exampleFormControlSelect1">Articulo</label>
                                     <select name="articulo" class="form-control" id="exampleFormControlSelect1">
-                                        @foreach($articulos as $item)
+                                        <option value="" hidden>Seleccionar</option>
+                                    @foreach($articulos as $item)
                                             <option value="{{$item->articulo}}">{{$item->descripcion}}</option>
                                         @endforeach
                                     </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="boletaInput">No Boleta</label>
+                                    <input type="text" name="no_boleta" class="form-control" id="boletaInput" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="placaInput">Placa</label>
@@ -45,10 +52,6 @@
                                 <div class="form-group col-md-4">
                                     <label for="lugarInput">Lugar</label>
                                     <input type="text" name="lugar" class="form-control" id="lugarInput" required>
-                                </div>
-                                <div class="form-group col-md-4">
-                                    <label for="tcInput">Tarjeta Circulacion</label>
-                                    <input type="text" name="tarjeta_circulacion" class="form-control" id="tcInput" required>
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="tcInput">Tarjeta Circulacion</label>
@@ -81,15 +84,16 @@
                                 </div>
                                 <div class="form-group col-md-4">
                                     <label for="fecha_vencimientoInput">Fecha Vencimiento</label>
-                                    <input type="date" name="fecha_vencimiento" class="form-control" id="fecha_vencimientoInput" required>
+                                    <input type="datetime-local" name="fecha_vencimiento" class="form-control" id="fecha_vencimientoInput" required>
                                 </div>
                                 <div class="form-group col-md-12">
+                                    <label for="validationTextarea">Observaciones</label>
                                     <textarea class="form-control" id="validationTextarea" name="observacion"
                                               required></textarea>
                                 </textarea>
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary">Submit</button>
+                            <button type="submit" class="btn btn-primary">Ingresar</button>
 
                         </form>
                     </div>

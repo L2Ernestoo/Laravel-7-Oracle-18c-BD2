@@ -8,6 +8,7 @@ use App\Multas;
 use App\TiposVehiculos;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
 
 class MultasController extends Controller
 {
@@ -25,13 +26,14 @@ class MultasController extends Controller
     {
         //Validamos los datos que nos envia por el submit el formulario y revisivos por la variable $request
         $validate = $request->validate([
-            'tipovehic_id_tipo' => 'integer|required',
+            'tipo_vehiculo' => 'integer|required',
             'placa' => 'string|max:20|required',
-            'marcas_idmarca' => 'integer|required',
+            'marca' => 'integer|required',
             'color' => 'string|max:30|required'
         ]);
 
         $multa = new Multas;
+        $multa->boleta_no = $request->no_boleta;
         $multa->tipovehic_id_tipo = $request->tipo_vehiculo;
         $multa->placa = $request->placa;
         $multa->marcas_idmarca = $request->marca;
@@ -44,12 +46,12 @@ class MultasController extends Controller
         $multa->conductor = $request->conductor;
         $multa->licencia = $request->licencia;
         $multa->monto = $request->monto;
-        $multa->fecha_mul = today();
+        $multa->fecha_mul = '2021-06-04 03:29:04';
         $multa->id_user = Auth::user()->id;
         $multa->chapa = $request->chapa;
-        $multa->fechavenc = $request->fecha_vencimiento;
+        $multa->fechavenc = '2021-06-04 03:29:04';
         $multa->save();
 
-
+        dd($multa);
     }
 }
