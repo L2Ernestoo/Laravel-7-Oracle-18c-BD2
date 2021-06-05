@@ -38,9 +38,9 @@
                                 </div>
                             @endif
                                 <div class="form-group col-md-8">
-                                    <label for="boletaInput">No Boleta / DPI</label>
-                                    <input aria-describedby="boletaHelp" type="number" value="{{ old('boleta_no') }}" max="9000000000" name="boletadpi" class="form-control" id="boletaInput" required>
-                                    <small id="boletaHelp" class="form-text text-muted">Ingrese su numero de boleta o DPI.</small>
+                                    <label for="boletaInput">No Placa / DPI</label>
+                                    <input aria-describedby="boletaHelp" type="string" value="{{ old('boleta_no') }}" maxlength="50" name="boletadpi" class="form-control" id="boletaInput" required>
+                                    <small id="boletaHelp" class="form-text text-muted">Ingrese su numero de Placa o DPI.</small>
                                 </div>
                             <div class="form-group col-md-4 d-flex align-items-center justify-content-center">
                                 <button type="submit" id="btnConsulta" class="btn btn-primary btn-block">Consultar</button>

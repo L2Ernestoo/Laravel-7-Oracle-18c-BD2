@@ -15,15 +15,26 @@ class ConsultarController extends Controller
 
     public function show(Request $request){
         $validate = $request->validate([
-           'boletadpi' => 'numeric|required'
+           'boletadpi' => 'string|required'
         ]);
 
-        $dpi = Persona::where('licen_dpi',$request->boletadpi)->orWhere('multas_boleta_no',$request->boletadpi)->first();
-        if(!empty($dpi)){
-            $vehiculo = Vehiculo::where('multas_boleta_no',$dpi->multas_boleta_no)->first();
+        $vehiculo = Vehiculo::where('placa',$request->boletadpi)->first();
+
+        if(!empty($vehiculo)){
+            $dpi = Persona::where('multas_boleta_no',$vehiculo->multas_boleta_no)->first();
             return view('consulta.index',compact('dpi','vehiculo'));
+        }else if (empty($vehiculo)) {
+            $dpi = Persona::where('licen_dpi',$request->boletadpi)->first();
+
+            if(!empty($dpi)){
+                $vehiculo = Vehiculo::where('multas_boleta_no',$dpi->multas_boleta_no)->first();
+                return view('consulta.index',compact('dpi','vehiculo'));
+            }else{
+                return redirect()->route('consulta.index')->with('message', 'No existe ninguna multa!');
+            }
         }else{
             return redirect()->route('consulta.index')->with('message', 'No existe ninguna multa!');
         }
+
     }
 }
